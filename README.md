@@ -102,7 +102,8 @@ There are three functions that are exported for use
 # Logic
 - The idea is to have a grid of positions, each position having boolean attributes for all 4 directions(true if blocked, false if open) and a boolean *"touched"* attribute
 - Then recursion is used to traverse over every single position in the grid by every *untouched(touched is false) AND open(direction attribute to and from are both false) position*
-- The recursive function, *`traverseMaze`*, ensures that where it comes from is never blocked, hence there is always a path(if the recursion at 19,19 calls 19,18 then the directions between those 2 points remain unblocked)
+- The recursive function, *`traverseMaze`*, ensures that where it comes from is never blocked, hence there is always a path
+<br>Eg: if the recursion at [19, 19] calls [19, 18] then the directions between those 2 points remain unblocked
 - Even after reaching the goal, the maze is still filled in every position because in any position, if all directions are blocked BUT there is an untouched position, that direction changes to open(the boolean for that direction is made false) and recursion would resume in said untouched position
 - Odds are used in 2 ways, the first one being that low odds means a low chance for a direction to be open(high chance a direction is blocked) with the intent of having **low odds mean longer mazes**
 - The second application of odds sealed the deal, by also making odds decide the *order of recursion*. In this instance of recursion, one function call may get finished after a good chunk of path is already made.
