@@ -1,0 +1,28 @@
+{
+  "name": "a-maze",
+  "version": "1.0.0",
+  "description": "Generate Mazes, of any width and height, of any start and end point and more",
+  "main": "maze.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Y0ursTruly/maze.git"
+  },
+  "keywords": [
+    "maze",
+    "recursion",
+    "grid",
+    "image"
+  ],
+  "author": "Paul R. Y. Taylor",
+  "license": "Apache-2.0",
+  "bugs": {
+    "url": "https://github.com/Y0ursTruly/maze/issues"
+  },
+  "homepage": "https://github.com/Y0ursTruly/maze#readme",
+  "dependencies": {
+    "canvas": "^2.11.2"
+  }
+}
