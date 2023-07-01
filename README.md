@@ -5,6 +5,15 @@ Generate Mazes, of any width and height, of any start and end point and more
 _in this example, orange is the starting point and cyan is the ending point_
 
 # Usage
+## Installation
+```
+git clone https://github.com/Y0ursTruly/maze.git
+```
+## Importing
+```
+const {makeMaze, makeRandomMaze, makeMove} = require('path/to/maze/folder');
+```
+## Exports
 There are three functions that are exported for use
 <ul>
   <li>
