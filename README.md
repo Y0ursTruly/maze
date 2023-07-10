@@ -5,14 +5,16 @@ Generate Mazes, of any width and height, of any start and end point and more
 _in this example, orange is the starting point and cyan is the ending point_
 
 # Usage
-## Installation
+### Installation
 ```
 npm install @y0urstruly/maze
 ```
-## Importing
+### Importing
 ```
 const {makeMaze, makeRandomMaze, makeMove} = require('@y0urstruly/maze');
 ```
+### Note
+If you are using this on a [replit](https://replit.com/) instance, you might want to configure your `replit.nix` file based on [this StackOverflow answer](https://stackoverflow.com/a/75099197/10697213) due to the npm [canvas](https://www.npmjs.com/package/canvas) package that this repository uses
 ## Exports
 There are three functions that are exported for use
 <ul>
@@ -69,9 +71,9 @@ There are three functions that are exported for use
   </li>
   <li>
     <details>
-      <summary><code>makeRandomMaze([maxSize[,minSize[,minDist]]])</code></summary>
+      <summary><code>makeRandomMaze([maxSize[,minSize[,minDist[,highestOdds[,lowestOdds]]]]])</code></summary>
       <ul>
-        <li><b>Description: </b>Generates a maze where both the width and height are each discrete but random integers from minSize through maxSize<br>The start and end points are random but always at least minDist away from each other. The odds are also randomly generated and this affects the length of the maze's path</li>
+        <li><b>Description: </b>Generates a maze where both the width and height are each discrete but random integers from minSize through maxSize<br>The start and end points are random but always at least minDist away from each other<br>The odds are also randomly generated with the fraction of numerator/denominator always at most highestOdds and at least lowestOdds<br>These odds affect the length of the maze's path</li>
         <li><b>Returns: </b>
 <pre>the maze object generated from the makeMaze function</pre>
         </li>
@@ -80,6 +82,8 @@ There are three functions that are exported for use
             <li><b>maxSize </b><code>number (default is 25)</code> the maximum height or width of the maze(more than 0)</li>
             <li><b>minSize </b><code>number (default is 10)</code> the minimum height or width of the maze(more than 0)</li>
             <li><b>minDist </b><code>number (default is 5)</code> the minimum distance between the start point and the end point of the maze(more than 1)</li>
+            <li><b>highestOdds </b><code>number (default is 0.9)</code> the maximum quotient of numerator/denominator</li>
+            <li><b>lowestOdds </b><code>number (default is 0.1)</code> the minimum quotient of numerator/denominator</li>
           </ul>
         </li>
       </ul>

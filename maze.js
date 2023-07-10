@@ -156,7 +156,7 @@ function makeMaze(width=20, height=20, start=[0,0], end=[19,19], odds=[2,11], li
   fillBlock(gx,gy,DRAW,startColour);
   return traverseMaze(px,py,gx,gy,null,map);
 }
-function makeRandomMaze(maxSize=25,minSize=10,minDist=5){
+function makeRandomMaze(maxSize=25,minSize=10,minDist=5,highestOdds=0.9,lowestOdds=0.1){
   let height=range(minSize,maxSize)
   let width=range(minSize,maxSize)
   let startX, startY, endX, endY;
@@ -165,17 +165,24 @@ function makeRandomMaze(maxSize=25,minSize=10,minDist=5){
     (startY=random()%height, endY=random()%height);
   }while(distance(startX,startY,endX,endY)<minDist);
   
-  let denominator=range(1,15), numerator=range(1,denominator-1);
+  do{
+    var denominator=range(1,50), numerator=range(1,denominator-1);
+  }while(numerator/denominator<lowestOdds || numerator/denominator>highestOdds);
   return makeMaze(width,height,[startX,startY],[endX,endY],[numerator,denominator]);
 }
 const movements={
-  N:(pos,map)=>pos[1]>0 && !map[pos[0]][pos[1]].N? pos[1]--: 'break',
-  E:(pos,map)=>pos[0]<map.height-1 && !map[pos[0]][pos[1]].E? pos[0]++: 'break',
-  S:(pos,map)=>pos[1]<map.width-1 && !map[pos[0]][pos[1]].S? pos[1]++: 'break',
-  W:(pos,map)=>pos[0]>0 && !map[pos[0]][pos[1]].W? pos[0]--: 'break',
+  N:(pos,map)=>
+    pos[1]>0 && !map[pos[0]][pos[1]].N && !map[pos[0]][pos[1]-1].S? pos[1]--: 'break',
+  E:(pos,map)=>
+    pos[0]<map.height-1 && !map[pos[0]][pos[1]].E && !map[pos[0]+1][pos[1]].W? pos[0]++: 'break',
+  S:(pos,map)=>
+    pos[1]<map.width-1 && !map[pos[0]][pos[1]].S && !map[pos[0]][pos[1]+1].N? pos[1]++: 'break',
+  W:(pos,map)=>
+    pos[0]>0 && !map[pos[0]][pos[1]].W && !map[pos[0]-1][pos[1]].E? pos[0]--: 'break',
   __proto__:null
 }
-function makeMove(map,move='',start=[0,0]){
+function makeMove(map,move='',start){
+  start=start||Array.from(map.start);
   if(move.length>map.height*map.width) return start;
   for(let i=0;i<move.length;i++){
     if(!movements[move[i]]) break;

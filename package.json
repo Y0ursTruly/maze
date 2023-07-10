@@ -1,6 +1,6 @@
 {
   "name": "@y0urstruly/maze",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "Generate Mazes, of any width and height, of any start and end point and more",
   "main": "maze.js",
   "scripts": {
