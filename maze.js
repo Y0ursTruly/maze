@@ -1,3 +1,4 @@
+(function(){
 if(typeof window==="undefined")
   var {createCanvas}=require('canvas'), crypto=require('node:crypto').webcrypto;
 else{
@@ -191,3 +192,5 @@ function makeMove(map,move='',start){
   return start;
 }
 if(typeof window==="undefined") module.exports={makeMaze,makeMove,makeRandomMaze};
+else (window.makeMaze=makeMaze, window.makeMove=makeMove, window.makeRandomMaze=makeRandomMaze);
+})()
