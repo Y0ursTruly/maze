@@ -1,6 +1,8 @@
 (function(){
-if(typeof window==="undefined")
+if(typeof window==="undefined"){
   var {createCanvas}=require('canvas'), crypto=require('node:crypto').webcrypto;
+  if(crypto.webcrypto) crypto=crypto.webcrypto; //webcrypto is in older versions of nodejs
+}
 else{
   function createCanvas(width,height){
     let canvas=document.createElement('canvas')
